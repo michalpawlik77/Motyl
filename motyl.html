@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="F.H.T.U. MOTYL — firma transportowa od 1983 roku. Transport krajowy i międzynarodowy, sprzedaż części do TIR-ów, stacje kontroli pojazdów.">
+<title>F.H.T.U. MOTYL — Transport · Spedycja · Serwis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --orange:#ff8c1e;
+  --orange-dark:#ff4f0a;
+  --orange-light:#ff9e3e;
+  --bg:#0a0a0a;
+  --surface:rgba(255,255,255,0.03);
+  --border:rgba(255,255,255,0.07);
+  --border-orange:rgba(255,140,30,0.2);
+  --text:#f0ede6;
+  --text-muted:#888;
+  --text-dim:#555;
+}
+
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND EFFECTS */
+.bg-grid{
+  position:fixed;inset:0;
+  background-image:linear-gradient(rgba(255,180,60,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,180,60,0.04) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;z-index:0;
+}
+.bg-glow1{
+  position:fixed;top:-20%;right:-20%;width:700px;height:700px;
+  background:radial-gradient(circle,rgba(255,140,30,0.10) 0%,transparent 65%);
+  pointer-events:none;z-index:0;
+}
+.bg-glow2{
+  position:fixed;bottom:-30%;left:-20%;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(255,90,30,0.07) 0%,transparent 65%);
+  pointer-events:none;z-index:0;
+}
+
+/* LAYOUT */
+.wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 2rem 4rem}
+
+/* NAV */
+nav.topnav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border-orange);
+  padding:0 2rem;
+}
+.nav-inner{
+  max-width:960px;margin:0 auto;
+  display:flex;align-items:center;gap:0;
+  height:56px;
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;letter-spacing:0.06em;
+  color:var(--text);text-decoration:none;
+  margin-right:auto;
+  display:flex;align-items:center;gap:0;
+}
+.nav-logo span{color:var(--orange)}
+.nav-links{display:flex;align-items:center;gap:2px;flex-wrap:wrap}
+.nav-links a{
+  font-size:12px;font-weight:400;letter-spacing:0.06em;
+  padding:6px 12px;border-radius:20px;
+  color:var(--text-muted);text-decoration:none;
+  transition:all 0.2s;white-space:nowrap;
+}
+.nav-links a:hover{color:var(--orange-light);background:rgba(255,140,30,0.08)}
+.nav-links a.active{color:var(--orange);background:rgba(255,140,30,0.12);border:1px solid rgba(255,140,30,0.25)}
+
+/* PAGE HEADER */
+.page-hero{padding:4rem 0 3rem}
+.hero-eyebrow{
+  font-size:11px;font-weight:500;letter-spacing:0.25em;
+  color:var(--orange);text-transform:uppercase;margin-bottom:10px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--orange);opacity:0.5}
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(48px,8vw,96px);line-height:0.95;
+  letter-spacing:0.03em;color:var(--text);
+  margin-bottom:1rem;
+}
+.hero-title em{color:var(--orange);font-style:normal}
+.hero-sub{
+  font-size:16px;font-weight:300;color:var(--text-muted);
+  max-width:600px;line-height:1.7;
+}
+
+/* SECTION */
+.section{margin-bottom:3rem}
+.section-label{
+  font-size:10px;font-weight:500;letter-spacing:0.25em;
+  color:var(--orange);text-transform:uppercase;
+  margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(255,140,30,0.15)}
+
+/* CARDS */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;padding:1.75rem;
+  position:relative;overflow:hidden;
+  transition:border-color 0.3s,background 0.3s;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--orange),var(--orange-dark));
+  opacity:0;transition:opacity 0.3s;
+}
+.card:hover{border-color:rgba(255,140,30,0.25);background:rgba(255,140,30,0.04)}
+.card:hover::before{opacity:1}
+
+.card-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(255,140,30,0.12);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.25rem;font-size:20px;color:var(--orange);
+}
+.card-label{font-size:10px;font-weight:500;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;margin-bottom:8px}
+.card-title{font-size:18px;font-weight:500;color:var(--text);margin-bottom:8px}
+.card-body{font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.7}
+
+/* GRID LAYOUTS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.col-span-2{grid-column:span 2}
+
+/* HIGHLIGHT BOX */
+.highlight-box{
+  background:rgba(255,140,30,0.05);
+  border:1px solid rgba(255,140,30,0.15);
+  border-radius:16px;padding:1.75rem 2rem;
+  display:flex;align-items:flex-start;gap:1.25rem;
+}
+.highlight-box .hb-icon{
+  width:48px;height:48px;border-radius:12px;flex-shrink:0;
+  background:rgba(255,140,30,0.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:var(--orange);
+}
+.hb-label{font-size:10px;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;margin-bottom:6px}
+.hb-value{font-size:16px;font-weight:500;color:var(--text);line-height:1.5}
+.hb-sub{font-size:12px;color:var(--text-dim);margin-top:3px}
+
+/* STAT CARDS */
+.stat{
+  background:rgba(255,140,30,0.06);
+  border:1px solid rgba(255,140,30,0.12);
+  border-radius:12px;padding:1.25rem 1.5rem;
+  text-align:center;
+}
+.stat-number{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--orange);line-height:1}
+.stat-label{font-size:11px;font-weight:400;letter-spacing:0.1em;color:var(--text-muted);margin-top:4px}
+
+/* BADGE */
+.badge{
+  display:inline-block;font-size:11px;font-weight:500;
+  padding:3px 10px;border-radius:20px;
+  background:rgba(255,140,30,0.1);
+  border:1px solid rgba(255,140,30,0.25);
+  color:var(--orange-light);letter-spacing:0.04em;
+}
+
+/* LIST ITEMS */
+.check-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.check-list li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:14px;color:var(--text-muted);line-height:1.6;
+}
+.check-list li::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--orange);flex-shrink:0;margin-top:7px;
+}
+
+/* LINKS */
+a.link-orange{color:var(--orange-light);text-decoration:none;transition:color 0.2s}
+a.link-orange:hover{color:#ffb86c}
+
+/* PHONE ROW */
+.phone-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.phone-type{
+  font-size:9px;letter-spacing:0.15em;text-transform:uppercase;
+  background:rgba(255,255,255,0.06);padding:2px 7px;
+  border-radius:4px;color:#666;min-width:40px;text-align:center;
+}
+
+/* CTA BUTTON */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;border-radius:30px;
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;
+  letter-spacing:0.08em;text-decoration:none;
+  transition:all 0.25s;cursor:pointer;border:none;
+}
+.btn-primary{
+  background:var(--orange);color:#0a0a0a;
+}
+.btn-primary:hover{background:var(--orange-light);transform:translateY(-1px)}
+.btn-outline{
+  background:transparent;color:var(--orange);
+  border:1px solid rgba(255,140,30,0.4);
+}
+.btn-outline:hover{background:rgba(255,140,30,0.08);border-color:var(--orange)}
+
+/* FOOTER */
+footer.site-footer{
+  position:relative;z-index:1;
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:2rem;margin-top:3rem;
+}
+.footer-inner{
+  max-width:960px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:0.75rem;
+}
+.footer-left{display:flex;flex-direction:column;gap:4px}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.06em;color:var(--text)}
+.footer-logo span{color:var(--orange)}
+.footer-nip{font-size:11px;color:var(--text-dim);letter-spacing:0.1em}
+.footer-nip b{color:var(--text-muted)}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-links a{font-size:11px;color:var(--text-dim);text-decoration:none;letter-spacing:0.08em;transition:color 0.2s}
+.footer-links a:hover{color:var(--orange)}
+.footer-cr{font-size:11px;color:#333;letter-spacing:0.08em;margin-top:4px}
+
+/* ANIMATIONS */
+.fade-up{animation:fadeUp 0.6s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.d1{animation-delay:0.05s}.d2{animation-delay:0.12s}.d3{animation-delay:0.19s}
+.d4{animation-delay:0.26s}.d5{animation-delay:0.33s}.d6{animation-delay:0.40s}
+.d7{animation-delay:0.47s}.d8{animation-delay:0.54s}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:2.5rem 0}
+
+/* BRAND LOGOS STRIP */
+.brands-strip{
+  display:flex;flex-wrap:wrap;gap:0.5rem;
+  margin-top:1rem;
+}
+.brand-pill{
+  font-size:12px;font-weight:500;letter-spacing:0.1em;
+  padding:5px 14px;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);border-radius:6px;
+  color:var(--text-muted);
+}
+
+/* HOURS TABLE */
+.hours-table{width:100%;border-collapse:collapse}
+.hours-table td{padding:6px 0;font-size:14px;color:var(--text-muted);border-bottom:1px solid rgba(255,255,255,0.04)}
+.hours-table td:first-child{color:var(--text);font-weight:400}
+.hours-table td:last-child{text-align:right;color:var(--orange-light);font-weight:500}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .col-span-2{grid-column:span 1}
+  .hero-title{font-size:52px}
+  .nav-links{display:none}
+  .highlight-box{flex-direction:column}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+}
+
+
+/* SPA EXTRAS */
+.page-view { display: none; }
+.page-view.active { display: block; }
+
+/* Mobile hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text-muted);
+  transition: all 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 56px;
+  left: 0; right: 0;
+  background: rgba(10,10,10,0.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-orange);
+  z-index: 99;
+  padding: 1rem 2rem;
+  flex-direction: column;
+  gap: 4px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover, .mobile-menu a.active { color: var(--orange); }
+.mobile-menu a:last-child { border-bottom: none; }
+
+@media(max-width:700px) {
+  .nav-links { display: none !important; }
+  .nav-hamburger { display: flex; }
+}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow1"></div>
+<div class="bg-glow2"></div>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" onclick="showPage('index');return false;">MO<span>TYL</span></a>
+    <div class="nav-links" id="nav-links">
+      <a href="#" onclick="showPage('index');return false;" data-page="index">Strona główna</a>
+      <a href="#" onclick="showPage('firma');return false;" data-page="firma">O firmie</a>
+      <a href="#" onclick="showPage('sklep');return false;" data-page="sklep">Sklep i serwis</a>
+      <a href="#" onclick="showPage('dojazd');return false;" data-page="dojazd">Mapa dojazdu</a>
+      <a href="#" onclick="showPage('kontakt');return false;" data-page="kontakt">Kontakt</a>
+      <a href="#" onclick="showPage('stacja');return false;" data-page="stacja">Stacja Siewierz</a>
+      <a href="#" onclick="showPage('stacja2');return false;" data-page="stacja2">Stacja Będzin</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" onclick="showPage('index');toggleMenu();return false;" data-page="index">Strona główna</a>
+  <a href="#" onclick="showPage('firma');toggleMenu();return false;" data-page="firma">O firmie</a>
+  <a href="#" onclick="showPage('sklep');toggleMenu();return false;" data-page="sklep">Sklep i serwis</a>
+  <a href="#" onclick="showPage('dojazd');toggleMenu();return false;" data-page="dojazd">Mapa dojazdu</a>
+  <a href="#" onclick="showPage('kontakt');toggleMenu();return false;" data-page="kontakt">Kontakt</a>
+  <a href="#" onclick="showPage('stacja');toggleMenu();return false;" data-page="stacja">Stacja Siewierz</a>
+  <a href="#" onclick="showPage('stacja2');toggleMenu();return false;" data-page="stacja2">Stacja Będzin</a>
+</div>
+
+
+<div id="page-index" class="page-view" style="display:block">
+<div class="wrap">
+<!-- HERO -->
+  <section class="page-hero fade-up">
+    <div class="hero-eyebrow">F.H.T.U. — od 1983 roku</div>
+    <h1 class="hero-title">Transport<br>który <em>działa</em></h1>
+    <p class="hero-sub">Firma transportowa z ponad 40-letnim doświadczeniem. Realizujemy przewozy krajowe i międzynarodowe własnym taborem — sprawnie, bezpiecznie, zgodnie z normami.</p>
+    <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap">
+      <a href="#" onclick="showPage('kontakt');return false;" class="btn btn-primary"><i class="ti ti-phone" aria-hidden="true"></i> Zadzwoń teraz</a>
+      <a href="#" onclick="showPage('firma');return false;" class="btn btn-outline">Poznaj firmę <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section fade-up d2">
+    <div class="grid-4">
+      <div class="stat"><div class="stat-number">40+</div><div class="stat-label">Lat na rynku</div></div>
+      <div class="stat"><div class="stat-number">9</div><div class="stat-label">Krajów obsługi</div></div>
+      <div class="stat"><div class="stat-number">2</div><div class="stat-label">Stacje diagnostyczne</div></div>
+      <div class="stat"><div class="stat-number">24h</div><div class="stat-label">Odpowiedź na zlecenie</div></div>
+    </div>
+  </section>
+
+  <!-- USŁUGI -->
+  <section class="section fade-up d3">
+    <div class="section-label">Nasze usługi</div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-truck"></i></div>
+        <div class="card-label">Transport</div>
+        <div class="card-title">Krajowy i międzynarodowy</div>
+        <div class="card-body">Przewozy ładunków kompletnych i drobnicowych. Naczepy oplandekowane, własny tabor.</div>
+        <a href="#" onclick="showPage('firma');return false;" style="display:inline-flex;align-items:center;gap:6px;margin-top:1rem;font-size:12px;color:var(--orange);text-decoration:none;letter-spacing:0.06em">Więcej <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-tool"></i></div>
+        <div class="card-label">Sklep i serwis</div>
+        <div class="card-title">Części do TIR-ów</div>
+        <div class="card-body">Sprzedaż części zamiennych do samochodów ciężarowych wszystkich marek zachodnich.</div>
+        <a href="#" onclick="showPage('sklep');return false;" style="display:inline-flex;align-items:center;gap:6px;margin-top:1rem;font-size:12px;color:var(--orange);text-decoration:none;letter-spacing:0.06em">Więcej <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-clipboard-check"></i></div>
+        <div class="card-label">Diagnostyka</div>
+        <div class="card-title">Stacje kontroli pojazdów</div>
+        <div class="card-body">Dwie nowoczesne stacje — Siewierz i Będzin-Grodziec. Pełny zakres badań technicznych.</div>
+        <a href="#" onclick="showPage('stacja');return false;" style="display:inline-flex;align-items:center;gap:6px;margin-top:1rem;font-size:12px;color:var(--orange);text-decoration:none;letter-spacing:0.06em">Więcej <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBSZAR DZIAŁANIA -->
+  <section class="section fade-up d4">
+    <div class="section-label">Obszar działania</div>
+    <div class="highlight-box">
+      <div class="hb-icon" aria-hidden="true"><i class="ti ti-map-2"></i></div>
+      <div>
+        <div class="hb-label">Kraje obsługiwane</div>
+        <div class="hb-value">Polska · Słowacja · Czechy · Węgry · Niemcy · Litwa · Łotwa · Estonia · Ukraina · Rumunia</div>
+        <div class="hb-sub">Transport pod plandeką, ładunki kompletne i drobnicowe</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GWARANCJE -->
+  <section class="section fade-up d5">
+    <div class="section-label">Dlaczego MOTYL</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-shield-check"></i></div>
+        <div class="card-title">Rzetelność i niezawodność</div>
+        <div class="card-body">Dokładność i profesjonalizm w każdym zleceniu. Szybka realizacja i indywidualne podejście do klienta.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-users"></i></div>
+        <div class="card-title">Polski właściciel od 1983</div>
+        <div class="card-body">Od momentu powstania jedynym właścicielem jest Andrzej Motyl — polska firma, polskie decyzje, elastyczność działania.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-package"></i></div>
+        <div class="card-title">Własny tabor</div>
+        <div class="card-body">Własny sprzęt transportowy gwarantuje pełną kontrolę nad jakością i terminowością przewozów.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-settings-2"></i></div>
+        <div class="card-title">Kompleksowa obsługa</div>
+        <div class="card-body">Transport, sprzedaż części, diagnostyka — wszystkie usługi logistyczne i serwisowe pod jednym dachem.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA KONTAKT -->
+  <section class="section fade-up d6">
+    <div style="background:rgba(255,140,30,0.07);border:1px solid rgba(255,140,30,0.2);border-radius:20px;padding:3rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem">
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.04em;color:var(--text);margin-bottom:8px">Masz pytanie lub zlecenie?</div>
+        <div style="font-size:14px;color:var(--text-muted)">Zadzwoń lub napisz — odpowiemy w ciągu 24 godzin.</div>
+      </div>
+      <a href="#" onclick="showPage('kontakt');return false;" class="btn btn-primary" style="font-size:14px;padding:14px 28px">Skontaktuj się <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </section>
+</div>
+</div>
+
+<div id="page-firma" class="page-view" style="display:none">
+<div class="wrap">
+<section class="page-hero fade-up">
+    <div class="hero-eyebrow">Historia i wartości</div>
+    <h1 class="hero-title">Doświad<em>czenie</em><br>zobowiązuje</h1>
+    <p class="hero-sub">Działamy na polskim rynku od 1983 roku. Ponad 40 lat usług transportowych własnym sprzętem — to nie liczba, to zobowiązanie wobec każdego klienta.</p>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section fade-up d2">
+    <div class="section-label">Historia firmy</div>
+    <div style="display:flex;flex-direction:column;gap:0">
+
+      <div style="display:flex;gap:1.5rem;padding-bottom:2rem;position:relative">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,140,30,0.15);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:18px;flex-shrink:0"><i class="ti ti-flag" aria-hidden="true"></i></div>
+          <div style="flex:1;width:1px;background:rgba(255,140,30,0.15);margin:4px 0"></div>
+        </div>
+        <div style="padding-top:8px">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--orange);letter-spacing:0.06em">1983</div>
+          <div style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px">Założenie firmy</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.7;max-width:600px">Andrzej Motyl zakłada firmę transportową. Od samego początku działalność opiera się na własnym taborze i bezpośredniej obsłudze klientów na terenie kraju.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:1.5rem;padding-bottom:2rem;position:relative">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,140,30,0.15);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:18px;flex-shrink:0"><i class="ti ti-world" aria-hidden="true"></i></div>
+          <div style="flex:1;width:1px;background:rgba(255,140,30,0.15);margin:4px 0"></div>
+        </div>
+        <div style="padding-top:8px">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--orange);letter-spacing:0.06em">Lata 90.</div>
+          <div style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px">Ekspansja zagraniczna</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.7;max-width:600px">Transport rozszerzony na kraje ościenne: Słowację, Czechy, Węgry, Niemcy, Litwę, Łotwę, Estonię, Ukrainę i Rumunię. Firma buduje sieć kontrahentów i partnerów biznesowych.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:1.5rem;padding-bottom:2rem;position:relative">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,140,30,0.15);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:18px;flex-shrink:0"><i class="ti ti-tool" aria-hidden="true"></i></div>
+          <div style="flex:1;width:1px;background:rgba(255,140,30,0.15);margin:4px 0"></div>
+        </div>
+        <div style="padding-top:8px">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--orange);letter-spacing:0.06em">1997</div>
+          <div style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px">Sprzedaż części do TIR-ów</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.7;max-width:600px">Uruchomienie sprzedaży części zamiennych do samochodów ciężarowych marek zachodnich. Szybki rozwój działu, współpraca z renomowanymi dystrybutorami w kraju i za granicą.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:1.5rem">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,140,30,0.2);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:18px;flex-shrink:0"><i class="ti ti-star" aria-hidden="true"></i></div>
+        </div>
+        <div style="padding-top:8px">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--orange);letter-spacing:0.06em">Dziś</div>
+          <div style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px">Lider kompleksowej obsługi</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.7;max-width:600px">Firma łączy transport, sprzedaż części i dwie stacje kontroli pojazdów. Tysiące klientów — firm transportowych, warsztatów i odbiorców indywidualnych — ufa marce MOTYL.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- MOCNE STRONY -->
+  <section class="section fade-up d3">
+    <div class="section-label">Nasze mocne strony</div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-building-factory-2"></i></div>
+        <div class="card-title">Kompleksowość</div>
+        <div class="card-body">Wszystkie rozwiązania logistyczne pod jednym dachem — oszczędzasz czas i pieniądze, mając jednego sprawdzonego partnera.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-map-pin"></i></div>
+        <div class="card-title">Znajomość rynku</div>
+        <div class="card-body">Polska firma doskonale znająca realia polskiego rynku — szybko reagujemy na zmieniające się warunki.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-adjustments-horizontal"></i></div>
+        <div class="card-title">Elastyczność</div>
+        <div class="card-body">Samodzielna firma bez korporacyjnych procedur — podejmujemy decyzje szybko i dobieramy partnerów z korzyścią dla jakości.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CZĘŚCI -->
+  <section class="section fade-up d4">
+    <div class="section-label">Sprzedaż części od 1997</div>
+    <div class="highlight-box">
+      <div class="hb-icon" aria-hidden="true"><i class="ti ti-engine"></i></div>
+      <div style="flex:1">
+        <div class="hb-label">Obsługiwane marki</div>
+        <div class="hb-value" style="margin-bottom:10px">RENAULT · SCANIA · VOLVO · MAN · MERCEDES · DAF · IVECO</div>
+        <div class="hb-sub" style="margin-bottom:8px">Naczepy i przyczepy: BPW · SAF · ROR · TRAYLOR · FRUEHAUF i inne</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.6">Długotrwała współpraca z renomowanymi dystrybutorami w kraju i za granicą. Oferujemy części oryginalne i firmowe zamienniki — szeroka gama produktów, możliwość wyboru.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section fade-up d5">
+    <div style="text-align:center;padding:2rem 0">
+      <a href="#" onclick="showPage('sklep');return false;" class="btn btn-primary" style="margin-right:1rem">Sklep i serwis <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      <a href="#" onclick="showPage('kontakt');return false;" class="btn btn-outline">Skontaktuj się</a>
+    </div>
+  </section>
+</div>
+</div>
+
+<div id="page-sklep" class="page-view" style="display:none">
+<div class="wrap">
+<section class="page-hero fade-up">
+    <div class="hero-eyebrow">Części zamienne od 1997</div>
+    <h1 class="hero-title">Sklep<br><em>&amp; serwis</em></h1>
+    <p class="hero-sub">Kompletne zaopatrzenie w części zamienne do samochodów ciężarowych i naczep. Części oryginalne i zamienniki, szybka realizacja, doradztwo techniczne.</p>
+  </section>
+
+  <!-- MARKI -->
+  <section class="section fade-up d2">
+    <div class="section-label">Obsługiwane marki</div>
+    <div class="highlight-box" style="flex-direction:column;gap:1rem">
+      <div style="display:flex;align-items:center;gap:1rem;width:100%">
+        <div class="hb-icon" aria-hidden="true"><i class="ti ti-truck"></i></div>
+        <div>
+          <div class="hb-label">Ciągniki siodłowe</div>
+          <div class="brands-strip">
+            <span class="brand-pill">RENAULT</span><span class="brand-pill">DAF</span><span class="brand-pill">MAN</span><span class="brand-pill">VOLVO</span><span class="brand-pill">SCANIA</span><span class="brand-pill">MERCEDES</span><span class="brand-pill">IVECO</span><span class="brand-pill">RVI</span>
+          </div>
+        </div>
+      </div>
+      <div style="width:100%;height:1px;background:var(--border)"></div>
+      <div style="display:flex;align-items:center;gap:1rem;width:100%">
+        <div class="hb-icon" aria-hidden="true"><i class="ti ti-container"></i></div>
+        <div>
+          <div class="hb-label">Naczepy i przyczepy (osie)</div>
+          <div class="brands-strip">
+            <span class="brand-pill">BPW</span><span class="brand-pill">SAF</span><span class="brand-pill">KOGEL</span><span class="brand-pill">TRAILOR</span><span class="brand-pill">FRUEHAUF</span><span class="brand-pill">ROR</span><span class="brand-pill">KASSBOHRER</span><span class="brand-pill">SCHMITZ</span><span class="brand-pill">LANGENDORF</span><span class="brand-pill">GIGANT</span><span class="brand-pill">SMB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASORTYMENT -->
+  <section class="section fade-up d3">
+    <div class="section-label">Nasz asortyment</div>
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-wind"></i></div>
+        <div class="card-label">01</div>
+        <div class="card-title">Pneumatyka</div>
+        <div class="card-body">Zawory, siłowniki, reduktory, osuszacze, filtry osuszacza i akcesoria pneumatyczne.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-circle-dashed"></i></div>
+        <div class="card-label">02</div>
+        <div class="card-title">Układ hamulcowy + osie</div>
+        <div class="card-body">Bębny, okładziny, tarcze, klocki, szczęki, rozpieraki, dźwignie manualne i automatyczne, zestawy naprawcze.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-bulb"></i></div>
+        <div class="card-label">03</div>
+        <div class="card-title">Oświetlenie i żarówki</div>
+        <div class="card-body">Reflektory, lampy tylne, obrysówki, halogeny, szperacze, lampy błyskowe, oświetlenie specjalistyczne.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-droplet"></i></div>
+        <div class="card-label">04</div>
+        <div class="card-title">Hydraulika siłowa</div>
+        <div class="card-body">Pompy, przystawki, sterowniki, przewody, szybkozłącza i akcesoria hydrauliczne.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-bolt"></i></div>
+        <div class="card-label">05</div>
+        <div class="card-title">Układ elektryczny</div>
+        <div class="card-body">Alternatory, rozruszniki, regulatory napięcia, mostki prostownicze i komponenty elektryczne.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-settings"></i></div>
+        <div class="card-label">06</div>
+        <div class="card-title">Części silnikowe</div>
+        <div class="card-body">Turbosprężarki, sprężarki, paski klinowe, wały korbowe, korbowody, tłoki, pierścienie, panewki, zestawy uszczelek, osprzęt.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-steering-wheel"></i></div>
+        <div class="card-label">07</div>
+        <div class="card-title">Elementy zawieszenia</div>
+        <div class="card-body">Poduszki powietrzne, drążki, amortyzatory, resory, końcówki, stabilizatory, zestawy naprawcze zwrotnic.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-car"></i></div>
+        <div class="card-label">08</div>
+        <div class="card-title">Elementy nadwozia i kabiny</div>
+        <div class="card-body">Zestawy naprawcze kabin, poduszki zawieszenia, tuleje, uszczelnienia i elementy konstrukcyjne.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-activity"></i></div>
+        <div class="card-label">09</div>
+        <div class="card-title">Układ wtryskowy</div>
+        <div class="card-body">Pompowtryskiwacze, wtryskiwacze, końcówki wtrysków i podzespoły układu paliwowego.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-circles-relation"></i></div>
+        <div class="card-label">10</div>
+        <div class="card-title">Przeniesienie napędu</div>
+        <div class="card-body">Sprzęgła kompletne, tarcze, łożyska, dociski, synchronizatory, koła zębate, wałki, adaptery, uszczelnienia skrzyń biegów.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-filter"></i></div>
+        <div class="card-label">11–12</div>
+        <div class="card-title">Filtry i układy wydechowe</div>
+        <div class="card-body">Filtry powietrza, paliwa, oleju, kabiny, wspomagania, Ad-Blue. Tłumiki, kolanka, rury, zbiorniki, opaski wydechowe.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-link"></i></div>
+        <div class="card-label">13–17</div>
+        <div class="card-title">Pozostały asortyment</div>
+        <div class="card-body">Dyszle, haki, siodła, sworznie królewskie, łożyska, ogumienie, zabezpieczenie ładunków, płyny i chemia samochodowa.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KLIENCI -->
+  <section class="section fade-up d4">
+    <div class="section-label">Obsługujemy</div>
+    <div class="grid-4">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center">
+        <div style="font-size:28px;color:var(--orange);margin-bottom:8px"><i class="ti ti-truck" aria-hidden="true"></i></div>
+        <div style="font-size:13px;color:var(--text-muted)">Firmy transportowe i spedycyjne</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center">
+        <div style="font-size:28px;color:var(--orange);margin-bottom:8px"><i class="ti ti-tool" aria-hidden="true"></i></div>
+        <div style="font-size:13px;color:var(--text-muted)">Warsztaty i serwisy samochodowe</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center">
+        <div style="font-size:28px;color:var(--orange);margin-bottom:8px"><i class="ti ti-building-store" aria-hidden="true"></i></div>
+        <div style="font-size:13px;color:var(--text-muted)">Sklepy i hurtownie motoryzacyjne</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center">
+        <div style="font-size:28px;color:var(--orange);margin-bottom:8px"><i class="ti ti-user" aria-hidden="true"></i></div>
+        <div style="font-size:13px;color:var(--text-muted)">Odbiorcy indywidualni</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section fade-up d5">
+    <div style="background:rgba(255,140,30,0.07);border:1px solid rgba(255,140,30,0.2);border-radius:20px;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem">
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.04em;color:var(--text);margin-bottom:6px">Szukasz konkretnej części?</div>
+        <div style="font-size:14px;color:var(--text-muted)">Zadzwoń — pomożemy dobrać i zamówić odpowiedni komponent.</div>
+      </div>
+      <a href="#" onclick="showPage('kontakt');return false;" class="btn btn-primary">Zapytaj o część <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </section>
+</div>
+</div>
+
+<div id="page-stacja" class="page-view" style="display:none">
+<div class="wrap">
+<section class="page-hero fade-up">
+    <div class="hero-eyebrow">Okręgowa Stacja Kontroli Pojazdów</div>
+    <h1 class="hero-title">Stacja<br><em>Siewierz</em></h1>
+    <p class="hero-sub">Nowoczesna stacja diagnostyczna w Siewierzu. Pełny zakres badań technicznych wszystkich typów pojazdów — od motocykli po ciężarówki i autobusy.</p>
+  </section>
+
+  <!-- INFO -->
+  <section class="section fade-up d2">
+    <div class="grid-3">
+      <div class="highlight-box" style="grid-column:span 2;flex-direction:column;gap:1.25rem">
+        <div style="display:flex;gap:1rem;align-items:flex-start">
+          <div class="hb-icon" aria-hidden="true"><i class="ti ti-map-pin"></i></div>
+          <div>
+            <div class="hb-label">Adres</div>
+            <div class="hb-value">ul. Bacholińska 10, 42-470 Siewierz</div>
+          </div>
+        </div>
+        <div style="width:100%;height:1px;background:rgba(255,140,30,0.1)"></div>
+        <div style="display:flex;gap:1rem;align-items:flex-start">
+          <div class="hb-icon" aria-hidden="true"><i class="ti ti-phone"></i></div>
+          <div>
+            <div class="hb-label">Telefon</div>
+            <div class="hb-value"><a href="tel:+48601423009" class="link-orange">601 423 009</a></div>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(255,140,30,0.07);border:1px solid rgba(255,140,30,0.18);border-radius:16px;padding:1.75rem">
+        <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px">Godziny otwarcia</div>
+        <table class="hours-table">
+          <tr><td>Poniedziałek – Piątek</td><td>6:00 – 21:00</td></tr>
+          <tr><td>Sobota</td><td>6:00 – 15:00</td></tr>
+          <tr><td>Niedziela</td><td>–</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- BADANIA PODSTAWOWE -->
+  <section class="section fade-up d3">
+    <div class="section-label">Badania techniczne pojazdów</div>
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-refresh"></i></div>
+        <div class="card-title">Badania okresowe</div>
+        <div class="card-body">
+          <ul class="check-list" style="margin-top:8px">
+            <li>Samochody osobowe i ciężarowe wszystkich marek</li>
+            <li>Motocykle i motorowery</li>
+            <li>Przyczepy i naczepy</li>
+            <li>Ciągniki rolnicze</li>
+            <li>Autobusy</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-plus"></i></div>
+        <div class="card-title">Badania dodatkowe</div>
+        <div class="card-body">
+          <ul class="check-list" style="margin-top:8px">
+            <li>Przed pierwszą rejestracją (pojazdy z zagranicy)</li>
+            <li>Pojazdy zasilane gazem</li>
+            <li>Po zatrzymaniu dowodu rejestracyjnego</li>
+            <li>Po kolizji lub wypadku drogowym</li>
+            <li>Nauka jazdy, taksówka osobowa</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PEŁNY ZAKRES -->
+  <section class="section fade-up d4">
+    <div class="section-label">Pełny zakres badań</div>
+    <div class="card">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 2rem">
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Pojazdy z instalacją gazową</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Taksówka osobowa lub bagażowa</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Pojazdy uprzywilejowane</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Przewóz materiałów niebezpiecznych</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Autobus do 100 km/h</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Pojazdy do nauki jazdy / egzaminów</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Po zmianach konstrukcyjnych</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Po kolizji drogowej</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNOSTYKA -->
+  <section class="section fade-up d5">
+    <div class="section-label">Nowoczesna diagnostyka</div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-cpu"></i></div>
+        <div class="card-title">Diagnostyka komputerowa</div>
+        <div class="card-body">Wszystkie urządzenia połączone z komputerem — precyzyjny obraz stanu podzespołów krytycznych dla bezpieczeństwa.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-rotate-clockwise"></i></div>
+        <div class="card-title">Geometria kół</div>
+        <div class="card-body">Diagnostyka zawieszenia i układu kierowniczego, geometria (zbieżność) kół, sprawdzenie luzów.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-brake"></i></div>
+        <div class="card-title">Pomiar hamowania</div>
+        <div class="card-body">Precyzyjny pomiar sił hamowania — weryfikacja skuteczności układów hamulcowych zgodna z normami.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRUGA STACJA -->
+  <section class="section fade-up d6">
+    <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:16px;padding:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <div>
+        <div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px">Sprawdź też</div>
+        <div style="font-size:18px;font-weight:500;color:var(--text)">Stacja Będzin-Grodziec</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-top:4px">ul. Górnicza 6 · Pon-Pt 7–20 · Sob 7–15</div>
+      </div>
+      <a href="#" onclick="showPage('stacja2');return false;" class="btn btn-outline">Otwórz stronę <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </section>
+</div>
+</div>
+
+<div id="page-stacja2" class="page-view" style="display:none">
+<div class="wrap">
+<section class="page-hero fade-up">
+    <div class="hero-eyebrow">Stacja Kontroli Pojazdów</div>
+    <h1 class="hero-title">Stacja<br><em>Będzin-Grodziec</em></h1>
+    <p class="hero-sub">Nowoczesna stacja diagnostyczna w Będzinie-Grodziec. Badania techniczne samochodów osobowych, dostawczych do 3,5t, motocykli i przyczep.</p>
+  </section>
+
+  <!-- INFO -->
+  <section class="section fade-up d2">
+    <div class="grid-3">
+      <div class="highlight-box" style="grid-column:span 2;flex-direction:column;gap:1.25rem">
+        <div style="display:flex;gap:1rem;align-items:flex-start">
+          <div class="hb-icon" aria-hidden="true"><i class="ti ti-map-pin"></i></div>
+          <div>
+            <div class="hb-label">Adres</div>
+            <div class="hb-value">ul. Górnicza 6, 42-506 Będzin-Grodziec</div>
+          </div>
+        </div>
+        <div style="width:100%;height:1px;background:rgba(255,140,30,0.1)"></div>
+        <div style="display:flex;gap:1rem;align-items:flex-start">
+          <div class="hb-icon" aria-hidden="true"><i class="ti ti-phone"></i></div>
+          <div>
+            <div class="hb-label">Telefon</div>
+            <div class="hb-value"><a href="tel:+48322630350" class="link-orange">32 263 03 50</a></div>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(255,140,30,0.07);border:1px solid rgba(255,140,30,0.18);border-radius:16px;padding:1.75rem">
+        <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px">Godziny otwarcia</div>
+        <table class="hours-table">
+          <tr><td>Poniedziałek – Piątek</td><td>7:00 – 20:00</td></tr>
+          <tr><td>Sobota</td><td>7:00 – 15:00</td></tr>
+          <tr><td>Niedziela</td><td>–</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- UWAGA - różnica od Siewierza -->
+  <section class="section fade-up d3">
+    <div style="background:rgba(255,180,60,0.06);border:1px solid rgba(255,180,60,0.2);border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:12px">
+      <i class="ti ti-info-circle" style="color:var(--orange);font-size:20px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
+      <div style="font-size:13px;color:var(--text-muted);line-height:1.7">
+        Stacja w Będzinie-Grodziec obsługuje <b style="color:var(--text)">samochody osobowe i dostawcze do 3,5t</b>, motocykle, motorowery i przyczepy.
+        Badania ciężarówek i autobusów wykonujemy w <a href="#" onclick="showPage('stacja');return false;" style="color:var(--orange);text-decoration:none">Stacji Siewierz</a>.
+      </div>
+    </div>
+  </section>
+
+  <!-- BADANIA -->
+  <section class="section fade-up d3">
+    <div class="section-label">Badania techniczne pojazdów</div>
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-refresh"></i></div>
+        <div class="card-title">Badania okresowe</div>
+        <div class="card-body">
+          <ul class="check-list" style="margin-top:8px">
+            <li>Samochody osobowe i dostawcze do 3,5t — wszystkie marki</li>
+            <li>Motocykle i motorowery</li>
+            <li>Przyczepy i naczepy</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-plus"></i></div>
+        <div class="card-title">Badania specjalne</div>
+        <div class="card-body">
+          <ul class="check-list" style="margin-top:8px">
+            <li>Przed pierwszą rejestracją (pojazdy z zagranicy)</li>
+            <li>Pojazdy zasilane gazem</li>
+            <li>Po zatrzymaniu dowodu rejestracyjnego</li>
+            <li>Po kolizji lub wypadku drogowym</li>
+            <li>Nauka jazdy, taksówka osobowa</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PEŁNY ZAKRES -->
+  <section class="section fade-up d4">
+    <div class="section-label">Pełny zakres badań dodatkowych</div>
+    <div class="card">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 2rem">
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Pojazdy z instalacją gazową</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Taksówka osobowa lub bagażowa</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Pojazdy uprzywilejowane</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Przewóz materiałów niebezpiecznych</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Pojazdy do nauki jazdy / egzaminów</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Po zmianach konstrukcyjnych pojazdu</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;padding:8px 0;font-size:13px;color:var(--text-muted)"><span style="color:var(--orange);margin-top:1px">›</span>Po kolizji drogowej</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNOSTYKA -->
+  <section class="section fade-up d5">
+    <div class="section-label">Wyposażenie stacji</div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-cpu"></i></div>
+        <div class="card-title">Diagnostyka komputerowa</div>
+        <div class="card-body">Nowoczesne urządzenia diagnostyczno-pomiarowe połączone z komputerem — precyzyjny pomiar stanu technicznego.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-rotate-clockwise"></i></div>
+        <div class="card-title">Geometria kół</div>
+        <div class="card-body">Pełna diagnostyka zawieszenia i układu kierowniczego, geometria kół, zbieżność, sprawdzenie luzów.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-brake"></i></div>
+        <div class="card-title">Pomiar hamowania</div>
+        <div class="card-body">Pomiar sił hamowania i weryfikacja skuteczności układów hamulcowych zgodna z obowiązującymi normami.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINK DO SIEWIERZA -->
+  <section class="section fade-up d6">
+    <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:16px;padding:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <div>
+        <div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px">Potrzebujesz badania ciężarówki?</div>
+        <div style="font-size:18px;font-weight:500;color:var(--text)">Stacja Siewierz — pełny zakres</div>
+        <div style="font-size:13px;color:var(--text-muted);margin-top:4px">ul. Bacholińska 10 · Pon-Pt 6–21 · Sob 6–15</div>
+      </div>
+      <a href="#" onclick="showPage('stacja');return false;" class="btn btn-outline">Otwórz stronę <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </section>
+</div>
+</div>
+
+<div id="page-dojazd" class="page-view" style="display:none">
+<div class="wrap">
+<section class="page-hero fade-up">
+    <div class="hero-eyebrow">Jak do nas trafić</div>
+    <h1 class="hero-title">Mapa<br><em>dojazdu</em></h1>
+    <p class="hero-sub">Znajdziesz nas w Siewierzu na Śląsku. Poniżej adresy wszystkich naszych lokalizacji wraz z mapami Google.</p>
+  </section>
+
+  <!-- LOKALIZACJE -->
+  <section class="section fade-up d2">
+    <div class="section-label">Nasze lokalizacje</div>
+    <div class="grid-3">
+
+      <div class="card" style="border-color:rgba(255,140,30,0.2)">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-building-skyscraper"></i></div>
+        <div class="card-label">Siedziba firmy</div>
+        <div class="card-title" style="margin-bottom:6px">Siewierz — siedziba</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:1rem">
+          ul. Częstochowska 110<br>
+          42-470 Siewierz
+        </div>
+        <a href="https://maps.google.pl/maps?q=siewierz+ul.+częstochowska+110" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:12px;padding:8px 16px">
+          <i class="ti ti-map" aria-hidden="true"></i> Otwórz w Google Maps
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-clipboard-check"></i></div>
+        <div class="card-label">Stacja diagnostyczna</div>
+        <div class="card-title" style="margin-bottom:6px">Siewierz — stacja SKP</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:6px">
+          ul. Bacholińska 10<br>
+          42-470 Siewierz
+        </div>
+        <div style="font-size:12px;color:var(--orange);margin-bottom:1rem">Pon–Pt 6:00–21:00 · Sob 6:00–15:00</div>
+        <a href="https://maps.google.com/maps?q=Siewierz+ul.+Bacholi%C5%84ska+10" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:12px;padding:8px 16px">
+          <i class="ti ti-map" aria-hidden="true"></i> Otwórz w Google Maps
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-clipboard-check"></i></div>
+        <div class="card-label">Stacja diagnostyczna</div>
+        <div class="card-title" style="margin-bottom:6px">Będzin-Grodziec — stacja SKP</div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:6px">
+          ul. Górnicza 6<br>
+          42-506 Będzin-Grodziec
+        </div>
+        <div style="font-size:12px;color:var(--orange);margin-bottom:1rem">Pon–Pt 7:00–20:00 · Sob 7:00–15:00</div>
+        <a href="https://maps.google.com/maps?q=B%C4%99dzin-Grodziec+ul.+G%C3%B3rnicza+6" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:12px;padding:8px 16px">
+          <i class="ti ti-map" aria-hidden="true"></i> Otwórz w Google Maps
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MAPA EMBED — siedziba -->
+  <section class="section fade-up d3">
+    <div class="section-label">Siedziba — Siewierz ul. Częstochowska 110</div>
+    <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border);position:relative">
+      <iframe
+        src="https://maps.google.pl/maps?f=q&source=s_q&hl=pl&q=siewierz+ul.+cz%C4%99stochowska+110&ie=UTF8&ll=50.477226,19.227705&spn=0.013109,0.027466&z=15&output=embed"
+        width="100%" height="420" style="display:block;border:0;filter:grayscale(0.3) invert(0.85) hue-rotate(180deg)"
+        allowfullscreen="" loading="lazy" title="Mapa dojazdu do siedziby MOTYL — Siewierz">
+      </iframe>
+    </div>
+    <div style="text-align:right;margin-top:8px">
+      <a href="https://maps.google.pl/maps?f=q&source=embed&hl=pl&q=siewierz+ul.+cz%C4%99stochowska+110&ll=50.477226,19.227705&z=15" target="_blank" rel="noopener" style="font-size:12px;color:var(--text-dim);text-decoration:none;letter-spacing:0.06em">
+        Wyświetl większą mapę <i class="ti ti-external-link" style="font-size:11px" aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- DOJAZD INFO -->
+  <section class="section fade-up d4">
+    <div class="section-label">Informacje o dojazorze</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-car"></i></div>
+        <div class="card-title">Samochodem</div>
+        <div class="card-body">Siewierz leży przy drodze krajowej DK78, ok. 30 km od Katowic i 25 km od Częstochowy. Dojazd od autostrady A1 zjazd Siewierz.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-phone"></i></div>
+        <div class="card-title">Masz problem z dojazdem?</div>
+        <div class="card-body">Zadzwoń — chętnie pomożemy znaleźć właściwą trasę.</div>
+        <a href="tel:+48326743965" class="link-orange" style="display:inline-flex;align-items:center;gap:6px;margin-top:1rem;font-size:13px;font-weight:500">
+          <i class="ti ti-phone" aria-hidden="true"></i> 32 67 43 965
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<div id="page-kontakt" class="page-view" style="display:none">
+<div class="wrap">
+<section class="page-hero fade-up">
+    <div class="hero-eyebrow">F.H.T.U. — Andrzej Motyl</div>
+    <h1 class="hero-title">Kontakt</h1>
+    <p class="hero-sub">Zadzwoń, napisz lub odwiedź nas — jesteśmy do dyspozycji i odpowiemy na każde pytanie dotyczące transportu, części lub badań technicznych.</p>
+  </section>
+
+  <!-- DANE KONTAKTOWE -->
+  <section class="section fade-up d2">
+    <div class="section-label">Dane kontaktowe</div>
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-map-pin"></i></div>
+        <div class="card-label">Adres</div>
+        <div style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:6px">ul. Targowa 36</div>
+        <div style="font-size:15px;color:var(--text-muted);margin-bottom:8px">42-470 Siewierz</div>
+        <div style="font-size:13px;color:var(--text-dim)">Siedziba: ul. Częstochowska 110</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-mail"></i></div>
+        <div class="card-label">E-mail</div>
+        <div style="margin-bottom:8px">
+          <a href="mailto:biuro@motyl.org.pl" class="link-orange" style="font-size:17px;font-weight:500">biuro@motyl.org.pl</a>
+        </div>
+        <div style="font-size:13px;color:var(--text-dim)">Odpowiadamy w ciągu 24h roboczych</div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-phone"></i></div>
+        <div class="card-label">Telefon stacjonarny</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="phone-row">
+            <span class="phone-type">biuro</span>
+            <a href="tel:+48326743965" class="link-orange" style="font-size:15px;font-weight:500">32 67 43 965</a>
+          </div>
+          <div class="phone-row">
+            <span class="phone-type">biuro</span>
+            <a href="tel:+48326742610" class="link-orange" style="font-size:15px;font-weight:500">32 67 42 610</a>
+          </div>
+          <div class="phone-row">
+            <span class="phone-type">voip</span>
+            <a href="tel:+48327299547" class="link-orange" style="font-size:15px;font-weight:500">32 729 95 47</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" aria-hidden="true"><i class="ti ti-device-mobile"></i></div>
+        <div class="card-label">Telefon komórkowy</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
+          <div class="phone-row">
+            <span class="phone-type">mob 1</span>
+            <a href="tel:+48601513268" class="link-orange" style="font-size:15px;font-weight:500">601 513 268</a>
+          </div>
+          <div class="phone-row">
+            <span class="phone-type">mob 2</span>
+            <a href="tel:+48601668888" class="link-orange" style="font-size:15px;font-weight:500">601 668 888</a>
+          </div>
+        </div>
+        <div style="font-size:13px;color:var(--text-dim)">Andrzej Motyl</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KONTO I TRANS-ID -->
+  <section class="section fade-up d3">
+    <div class="highlight-box">
+      <div class="hb-icon" aria-hidden="true"><i class="ti ti-building-bank"></i></div>
+      <div style="flex:1">
+        <div class="hb-label">Numer konta bankowego</div>
+        <div style="font-family:'Outfit',monospace;font-size:18px;font-weight:500;color:var(--text);letter-spacing:0.06em;margin-bottom:4px">50 8441 0001 0000 0019 4262 0001</div>
+        <div class="hb-sub">BS o/Siewierz</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up d4">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+      <div style="font-size:10px;font-weight:500;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;flex-shrink:0">Trans-ID</div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <span class="badge">273028-1</span>
+        <span class="badge">273028-2</span>
+        <span class="badge">273028-3</span>
+        <span class="badge">273028-4</span>
+        <span class="badge">273028-5</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DANE FIRMY -->
+  <section class="section fade-up d5">
+    <div class="section-label">Dane rejestrowe</div>
+    <div class="card" style="max-width:480px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.05)">
+          <span style="font-size:13px;color:var(--text-dim)">Nazwa</span>
+          <span style="font-size:13px;color:var(--text);font-weight:500">F.H.T.U. "MOTYL" Andrzej Motyl</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.05)">
+          <span style="font-size:13px;color:var(--text-dim)">NIP</span>
+          <span style="font-size:13px;color:var(--text);font-weight:500">649-100-29-09</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.05)">
+          <span style="font-size:13px;color:var(--text-dim)">Adres</span>
+          <span style="font-size:13px;color:var(--text);font-weight:500;text-align:right">ul. Targowa 36<br>42-470 Siewierz</span>
+        </div>
+        <div style="display:flex;justify-content:space-between">
+          <span style="font-size:13px;color:var(--text-dim)">Rzetelna Firma</span>
+          <a href="http://www.rzetelnafirma.pl/93ZFUZQY/1" target="_blank" rel="noopener" style="font-size:13px;color:var(--orange);text-decoration:none;display:flex;align-items:center;gap:4px">Certyfikat <i class="ti ti-external-link" style="font-size:12px" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-logo">MO<span>TYL</span></div>
+      <div class="footer-nip">NIP: <b>649-100-29-09</b> &nbsp;|&nbsp; F.H.T.U. "MOTYL" Andrzej Motyl</div>
+      <div class="footer-cr">ul. Targowa 36, 42-470 Siewierz</div>
+    </div>
+    <div>
+      <div class="footer-links">
+        <a href="#" onclick="showPage('index');return false;">Strona główna</a>
+        <a href="#" onclick="showPage('firma');return false;">O firmie</a>
+        <a href="#" onclick="showPage('sklep');return false;">Sklep</a>
+        <a href="#" onclick="showPage('stacja');return false;">Stacje</a>
+        <a href="#" onclick="showPage('dojazd');return false;">Dojazd</a>
+        <a href="#" onclick="showPage('kontakt');return false;">Kontakt</a>
+      </div>
+      <div class="footer-cr" style="text-align:right;margin-top:6px">© 2025 F.H.T.U. MOTYL</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const PAGES = ['index','firma','sklep','stacja','stacja2','dojazd','kontakt'];
+const PAGE_TITLES = {
+  index: 'F.H.T.U. MOTYL — Transport · Spedycja · Serwis',
+  firma: 'O firmie — F.H.T.U. MOTYL',
+  sklep: 'Sklep i serwis — F.H.T.U. MOTYL',
+  stacja: 'Stacja Siewierz — F.H.T.U. MOTYL',
+  stacja2: 'Stacja Będzin-Grodziec — F.H.T.U. MOTYL',
+  dojazd: 'Mapa dojazdu — F.H.T.U. MOTYL',
+  kontakt: 'Kontakt — F.H.T.U. MOTYL',
+};
+
+let currentPage = 'index';
+
+function showPage(pageId) {
+  if (!PAGES.includes(pageId)) return;
+  
+  // Hide all pages
+  PAGES.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (el) el.style.display = 'none';
+  });
+  
+  // Show target
+  const target = document.getElementById('page-' + pageId);
+  if (target) {
+    target.style.display = 'block';
+    // Re-trigger animations
+    target.querySelectorAll('.fade-up').forEach(el => {
+      el.style.animation = 'none';
+      el.offsetHeight; // reflow
+      el.style.animation = '';
+    });
+  }
+  
+  // Update nav active states
+  document.querySelectorAll('[data-page]').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === pageId);
+  });
+  
+  // Update title
+  document.title = PAGE_TITLES[pageId] || 'F.H.T.U. MOTYL';
+  
+  // Update URL hash
+  history.pushState(null, '', '#' + pageId);
+  
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  currentPage = pageId;
+}
+
+function toggleMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+// Handle browser back/forward
+window.addEventListener('popstate', () => {
+  const hash = location.hash.replace('#','') || 'index';
+  if (PAGES.includes(hash)) showPage(hash);
+});
+
+// Load from hash on start
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = location.hash.replace('#','');
+  if (hash && PAGES.includes(hash)) showPage(hash);
+  else showPage('index');
+});
+</script>
+</body>
+</html>
